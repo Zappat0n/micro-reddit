@@ -1,57 +1,74 @@
 # Rails Programming
 
-## PROJECT: BLOG APP
+## PROJECT: BUILDING WITH ACTIVE RECORD
 
 ## Introduction
 
-In this project we created a simple blog system following the instructions from [JumpstartLab](http://tutorials.jumpstartlab.com/projects/blogger.html).
+In this project we created a simple version of [Reddit](https://www.reddit.com/) following the instructions from [The Odin Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/building-with-active-record-ruby-on-rails).
+
 We used basic concepts of Ruby on Rails including:
 
 - Models, Views, and Controllers (MVC)
 - Data Structures & Relationships
-- Routing
 - Migrations
-- Views with forms, partials, and helpers
 - RESTful design
-- Adding gems for extra features
 
 ## To install and run
 
-- Clone the project repo from [GitHub](https://github.com/krishnzzz/blogger) using `git clone https://github.com/krishnzzz/blogger`
+- Clone the project repo from [GitHub](https://github.com/Zappat0n/micro-reddit/) using `git clone https://github.com/Zappat0n/micro-reddit/`
 - Make sure [Ruby-lang](https://www.ruby-lang.org/en/) is installed
 - Make sure [Bundler](https://bundler.io/) is installed
 - Install the required gems. Run `bundle install`
 - Install the locale database. Run `rake db:migrate`
 - If you have problems with the gem versions try installing [RVM](https://rvm.io/)
 - Launch a Rails Server using `rails server`
-- Open your browser and go to `127.0.0.1:3000` or `localhost:3000`
+- Launch a Rails Console using `rails console`
+- Now you can do basic operations with the ActiveRecords User, Comment & Post.
 
-## Blog app
+## Micro-reddit app
+
+### Model
 
 ![screenshot](./app/assets/images/screenshot.png)
 
-This is a simple blog where you can create articles, and add comments, tags and pictures to the articles.
+We have created a simplified model of the one used in [Reddit](https://www.reddit.com/).
 
-The main page will display all the available articles.
+There are three classes: User, Post & Comment.
 
-To create a new article press the new article button in the page. There you can
-- Add a title and a body
-- Tag the main topics of the article to make searches easier
-- Attach an image to the article
+#### User
+  - Has two fields: username & password.
+  - He can have many posts.
+  - The username needs to be present and be unique.
+  - The password needs to be between 4 and 12 characters long.
 
-You can see any article and add a comment just clicking on the article.
+#### Post
+  - Has three fields: title, body & user_id.
+  - The user_id needs to be present.
+  - The user_id is a foreign key representing the author of the post.
 
+#### Comment
+  - Has three fields: body, post_id & user_id .
+  - The user_id and the post_id need to be present.
+  - The user_id is a foreign key representing the author of the comment.
+  - The post_id is a foreign key representing the post of the comment.
+
+### Operations
+
+In each class you can do the basic CRUD operations:
+
+- all: Displays all the elements in that table. Ex: `User.all`
+- first: Displays the first element in that table. Ex: `Comment.first`
+- new: Creates a new element. Ex: `Post.new(title: "Main title", body: "Main body", user_id: 1)`
+- create: Creates a new element and adds it to the table. Ex: `User.create(username: "Peter", password: "1234")`
+- destroy: Delete an element from the table. Ex: `User.destroy(3)`
 
 ## Designed With
 - Ruby
 - Rails
-- SCSS
 - Git
 - Gitflows
 - Rubocop
-- Styleint
 - VS Code
-- [Heroku]()
 
 ## Contribute to this Project
 
